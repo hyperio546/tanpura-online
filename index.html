@@ -19,16 +19,35 @@
             background-color: rgb(44, 44, 44);
             color: white;
         }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: rgb(44, 44, 44);
+                color: white;
+            }
+        }
     </style>
     <script>
-        function myFunction() {
-        var element = document.body;
-        element.classList.toggle("dark-mode");
+        function toggleDarkMode() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+            var isDarkMode = element.classList.contains("dark-mode");
+            localStorage.setItem("dark-mode", isDarkMode);
         }
+
+        // Function to check initial dark mode setting
+        function checkDarkMode() {
+            var isDarkMode = localStorage.getItem("dark-mode") === "true";
+            if (isDarkMode) {
+                document.body.classList.add("dark-mode");
+            }
+        }
+
+        checkDarkMode(); // Check initial setting on page load
     </script>
 </head>
 <body>
-    <button onclick="myFunction()">💡</button><br><br>
+    <button onclick="toggleDarkMode()">💡</button><br><br>
     This is a website with Tanpura samples of every scale. <br><br>
     A Scale: <br>
     <audio controls loop>
